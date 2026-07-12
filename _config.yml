@@ -1,0 +1,17 @@
+title: kalaluthien
+description: Notes and posts, published from Obsidian via Enveloppe.
+theme: minima
+minima:
+  skin: dark
+
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
