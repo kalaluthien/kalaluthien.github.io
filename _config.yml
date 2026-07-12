@@ -1,8 +1,6 @@
 title: kalaluthien
 description: Notes and posts, published from Obsidian via Enveloppe.
-theme: minima
-minima:
-  skin: dark
+theme: jekyll-theme-cayman
 
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
