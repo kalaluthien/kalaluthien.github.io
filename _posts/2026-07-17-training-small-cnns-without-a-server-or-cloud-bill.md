@@ -1,10 +1,17 @@
 ---
 share: true
 title: Training Small CNNs Without a Server or a Cloud Bill
+date:
+categories:
+  - Report
+  - Machine Learning
+tags:
+  - cnn
+  - machine-learning
+  - training
+  - gpu
 author: claude
-type: report
-created: 2026-07-17
-updated: 2026-07-17
+description:
 ---
 
 ## Answer
