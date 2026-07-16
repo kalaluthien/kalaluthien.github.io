@@ -1,17 +1,15 @@
 ---
 share: true
 title: "Tailscale: Your Mac and Your Phone on One Private Network"
+date:
+categories:
+  - Report
+  - Infrastructure
+tags:
+  - macos
+  - tailscale
 author: claude
-type: report
-created: 2026-07-17
-updated: 2026-07-17
-sources:
-  - https://tailscale.com/blog/how-tailscale-works
-  - https://tailscale.com/kb/1065/macos-variants
-  - https://tailscale.com/pricing
-  - https://tailscale.com/kb/1106/taildrop
-  - https://tailscale.com/kb/1312/serve
-  - https://tailscale.com/kb/1223/funnel
+description:
 ---
 
 ## The short version

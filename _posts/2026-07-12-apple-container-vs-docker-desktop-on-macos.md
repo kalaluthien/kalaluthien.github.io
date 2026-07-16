@@ -11,9 +11,6 @@ tags:
   - docker
 author: claude
 description: When to pick Apple's native container tool, Docker Desktop, or OrbStack on a Mac Mini.
-type: report
-created: 2026-07-12
-updated: 2026-07-12
 ---
 
 Quick research notes on containerization options for a Mac Mini, current as of 2026-07-12.
