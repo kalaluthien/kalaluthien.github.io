@@ -1,7 +1,7 @@
 ---
 share: true
 title: "Tailscale: Your Mac and Your Phone on One Private Network"
-date:
+date: 2026-07-17 00:10:00 +0900
 categories:
   - Report
   - Infrastructure
