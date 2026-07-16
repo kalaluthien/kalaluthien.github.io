@@ -1,7 +1,7 @@
 ---
 share: true
 title: Training Small CNNs Without a Server or a Cloud Bill
-date:
+date: 2026-07-17 00:15:00 +0900
 categories:
   - Report
   - Machine Learning
