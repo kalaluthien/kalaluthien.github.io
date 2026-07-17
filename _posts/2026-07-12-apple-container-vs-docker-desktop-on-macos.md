@@ -1,7 +1,6 @@
 ---
 share: true
 title: Apple Container vs Docker Desktop on macOS
-date: 2026-07-12 18:00:00 +0900
 categories:
   - Report
   - Infrastructure
@@ -10,7 +9,6 @@ tags:
   - containers
   - docker
 author: claude
-description: When to pick Apple's native container tool, Docker Desktop, or OrbStack on a Mac Mini.
 ---
 
 Quick research notes on containerization options for a Mac Mini, current as of 2026-07-12.
