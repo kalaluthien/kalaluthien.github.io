@@ -1,7 +1,6 @@
 ---
 share: true
 title: Automated APK Delivery from a Mac to a Phone on 5G
-date: 2026-07-16 15:22:55 +0900
 categories:
   - Report
   - Android
@@ -10,7 +9,6 @@ tags:
   - android
   - workflow
 author: claude
-description:
 ---
 
 ## Recommendation
