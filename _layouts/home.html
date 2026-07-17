@@ -1,0 +1,208 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+<!--
+  Home feed override (site-local; not part of the Chirpy theme).
+
+  Goal: keep the reserved "Report" top category (agent-written reports) off the
+  home page so human-written posts lead. Reports stay reachable via the Reports
+  tab, Categories, Tags, Archives, search, and the Atom feed — only the home
+  feed hides them.
+
+  Why this replaces Chirpy's stock list-building math instead of just adding a
+  filter: the stock layout sizes the visible list from `paginator.posts` (which
+  jekyll-paginate slices from the UNFILTERED post set) and then indexes into a
+  filtered array. The moment any post is filtered out, the counts disagree and
+  the loop pushes out-of-range nils, rendering blank cards that link nowhere.
+  So we build the filtered list ourselves and paginate it ourselves. The card
+  markup below is copied verbatim from the theme's home.html.
+-->
+
+{% assign per_page = site.paginate | default: 10 %}
+
+<!-- Build the home feed: honor Chirpy's `hidden`, then drop reports; split pinned out -->
+{% assign feed = '' | split: '' %}
+{% assign pinned = '' | split: '' %}
+{% for post in site.posts %}
+  {% if post.hidden == true %}{% continue %}{% endif %}
+  {% assign top_category = post.categories | first %}
+  {% if top_category == 'Report' %}{% continue %}{% endif %}
+  {% if post.pin %}
+    {% assign pinned = pinned | push: post %}
+  {% else %}
+    {% assign feed = feed | push: post %}
+  {% endif %}
+{% endfor %}
+
+<!-- Pinned posts lead, as in stock Chirpy -->
+{% assign ordered = pinned | concat: feed %}
+
+<!-- Manual pagination over the filtered list -->
+{% assign total = ordered.size %}
+{% assign total_pages = total | plus: per_page | minus: 1 | divided_by: per_page %}
+{% assign page = paginator.page | default: 1 %}
+{% assign slice_start = page | minus: 1 | times: per_page %}
+{% assign slice_end = slice_start | plus: per_page | minus: 1 %}
+
+{% assign posts = '' | split: '' %}
+{% if total > 0 and slice_start < total %}
+  {% for i in (slice_start..slice_end) %}
+    {% if i >= total %}{% break %}{% endif %}
+    {% assign posts = posts | push: ordered[i] %}
+  {% endfor %}
+{% endif %}
+
+<div id="post-list" class="flex-grow-1 px-xl-1">
+  {% for post in posts %}
+    <article class="card-wrapper card">
+      <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse">
+        {% assign card_body_col = '12' %}
+
+        {% if post.image %}
+          {% assign src = post.image.path | default: post.image %}
+
+          {% if post.media_subpath %}
+            {% unless src contains '://' %}
+              {% assign src = post.media_subpath
+                | append: '/'
+                | append: src
+                | replace: '///', '/'
+                | replace: '//', '/'
+              %}
+            {% endunless %}
+          {% endif %}
+
+          {% if post.image.lqip %}
+            {% assign lqip = post.image.lqip %}
+
+            {% if post.media_subpath %}
+              {% unless lqip contains 'data:' %}
+                {% assign lqip = post.media_subpath
+                  | append: '/'
+                  | append: lqip
+                  | replace: '///', '/'
+                  | replace: '//', '/'
+                %}
+              {% endunless %}
+            {% endif %}
+
+            {% assign lqip_attr = 'lqip="' | append: lqip | append: '"' %}
+          {% endif %}
+
+          {% assign alt = post.image.alt | xml_escape | default: 'Preview Image' %}
+
+          <div class="col-md-5">
+            <img src="{{ src }}" alt="{{ alt }}" {{ lqip_attr }}>
+          </div>
+
+          {% assign card_body_col = '7' %}
+        {% endif %}
+
+        <div class="col-md-{{ card_body_col }}">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
+
+            <div class="card-text content mt-0 mb-3">
+              <p>{% include post-summary.html %}</p>
+            </div>
+
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                {% include datetime.html date=post.date lang=lang %}
+
+                <!-- categories -->
+                {% if post.categories.size > 0 %}
+                  <i class="far fa-folder-open fa-fw me-1"></i>
+                  <span class="categories">
+                    {% for category in post.categories %}
+                      {{ category }}
+                      {%- unless forloop.last -%},{%- endunless -%}
+                    {% endfor %}
+                  </span>
+                {% endif %}
+              </div>
+
+              {% if post.pin %}
+                <div class="pin ms-1">
+                  <i class="fas fa-thumbtack fa-fw"></i>
+                  <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
+                </div>
+              {% endif %}
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
+  {% endfor %}
+</div>
+<!-- #post-list -->
+
+<!--
+  Pagination nav driven by the FILTERED total_pages (not paginator.total_pages,
+  which counts reports). jekyll-paginate still generates /page:num/ dirs for the
+  unfiltered count, so any URL we emit here exists; extra generated pages beyond
+  our total_pages are simply never linked. URLs are built exactly as the theme's
+  post-paginator.html builds them.
+-->
+{% if total_pages > 1 %}
+  <nav aria-label="Page Navigation">
+    <ul class="pagination align-items-center mt-4 mb-0">
+      <!-- previous -->
+      {% if page > 1 %}
+        {% assign prev = page | minus: 1 %}
+        {% if prev == 1 %}
+          {% assign prev_url = '/' | relative_url %}
+        {% else %}
+          {% assign prev_url = site.paginate_path | replace: ':num', prev | relative_url %}
+        {% endif %}
+      {% else %}
+        {% assign prev_url = '#' %}
+      {% endif %}
+
+      <li class="page-item {% unless page > 1 %}disabled{% endunless %}">
+        <a class="page-link" href="{{ prev_url }}" aria-label="previous-page">
+          <i class="fas fa-angle-left"></i>
+        </a>
+      </li>
+
+      <!-- page numbers -->
+      {% for i in (1..total_pages) %}
+        <li class="page-item {% if i == page %}active{% endif %}">
+          <a
+            class="page-link"
+            href="{% if i > 1 %}{{ site.paginate_path | replace: ':num', i | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"
+          >
+            {{- i -}}
+          </a>
+        </li>
+      {% endfor %}
+
+      <!-- mobile page index -->
+      <li class="page-index align-middle">
+        <span>{{ page }}</span>
+        <span class="text-muted">/ {{ total_pages }}</span>
+      </li>
+
+      <!-- next -->
+      {% if page < total_pages %}
+        {% assign next = page | plus: 1 %}
+        {% assign next_url = site.paginate_path | replace: ':num', next | relative_url %}
+      {% else %}
+        {% assign next_url = '#' %}
+      {% endif %}
+
+      <li class="page-item {% unless page < total_pages %}disabled{% endunless %}">
+        <a class="page-link" href="{{ next_url }}" aria-label="next-page">
+          <i class="fas fa-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+{% endif %}
