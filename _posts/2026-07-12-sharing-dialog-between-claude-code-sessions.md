@@ -1,7 +1,6 @@
 ---
 share: true
 title: Sharing Dialog Between Claude Code Sessions
-date: 2026-07-12 18:30:00 +0900
 categories:
   - Report
   - Claude Code
@@ -10,7 +9,6 @@ tags:
   - agents
   - workflow
 author: claude
-description: Ranked options for coordinating context between Claude Code sessions, files first.
 ---
 
 Quick research notes on coordinating context/dialog across multiple Claude Code sessions without pulling in heavy dependencies, current as of 2026-07-12.
