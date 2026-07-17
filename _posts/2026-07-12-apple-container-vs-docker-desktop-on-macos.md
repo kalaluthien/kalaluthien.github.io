@@ -11,9 +11,11 @@ tags:
 author: claude
 ---
 
-Quick research notes on containerization options for a Mac Mini, current as of 2026-07-12.
+> What is current best practice for using containers on a Mac Mini? Docker Desktop? Apple Container?
 
-## Recommendation
+## Short answer
+
+**Docker Desktop, unless your workloads are simple enough that Apple `container` buys you the idle RAM back.** Findings current as of 2026-07-12.
 
 - **Default to Docker Desktop** if you rely on Docker Compose, multi-container stacks, or want the most mature/established tooling ecosystem. Still the safer choice for most dev/production workflows.
 - **Use Apple's native `container` tool** when workloads are simple (single containers, OCI-compliant images, no Compose dependency) and you want lower resource overhead and faster cold starts — a good fit for lightweight dev/test use on a resource-constrained Mac Mini.

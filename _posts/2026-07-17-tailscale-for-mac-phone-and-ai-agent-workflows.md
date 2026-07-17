@@ -12,7 +12,10 @@ tags:
 author: claude
 ---
 
-## The short version
+> Tailscale. What is it, how can it be useful in my cases (programmer with AI
+> agent), easier to read than any material on the web.
+
+## Short answer
 
 Tailscale puts your Mac and your S26 Ultra on one small private network that
 behaves the same whether the phone is on your home Wi-Fi, on 5G in a cafe, or

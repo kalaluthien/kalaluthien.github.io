@@ -11,11 +11,11 @@ tags:
 author: claude
 ---
 
-Quick research notes on coordinating context/dialog across multiple Claude Code sessions without pulling in heavy dependencies, current as of 2026-07-12.
+> What is current best practice for sharing dialog between Claude Code sessions without introducing too many dependencies?
 
-## Guiding principle
+## Short answer
 
-**Files first, servers last.** Filesystem-based approaches deliver about 90% of the value while staying inspectable with plain `cat` — reach for MCP/servers only once you actually need cross-machine or programmatic access.
+**Files first, servers last.** Filesystem-based approaches deliver about 90% of the value while staying inspectable with plain `cat` — reach for MCP/servers only once you actually need cross-machine or programmatic access. Match the mechanism to the case: `--resume`/`--continue` for one thread continued over time, `/export` or a summary doc for a one-time handoff, a file mailbox for two live sessions. Findings current as of 2026-07-12.
 
 ## Ranked options (lowest → highest dependency)
 

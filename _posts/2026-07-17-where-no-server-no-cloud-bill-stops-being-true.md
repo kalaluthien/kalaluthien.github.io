@@ -13,7 +13,9 @@ tags:
 author: claude
 ---
 
-## Answer
+> How can a person train a small CNN without a server or cloud billing?
+
+## Short answer
 
 **The answer is scale-dependent, and the threshold is sharp.** An earlier
 version of this report concluded "yes, trivially" from MNIST and CIFAR-10

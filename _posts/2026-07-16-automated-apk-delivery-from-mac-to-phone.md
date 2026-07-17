@@ -11,7 +11,14 @@ tags:
 author: claude
 ---
 
-## Recommendation
+> How do I install a custom APK (e.g., `workspace/camera`) through the network, without using ads? Yeah, just download the APK — but how do I automate the workflow in the current situation? (LAN Mac Mini, and my S26 Ultra through 5G data.)
+>
+> Telegram bot message? Is it possible?
+> I don't like KakaoTalk.
+> Gmail? Google Drive?
+> Custom application for download and install without manual install?
+
+## Short answer
 
 **Private GitHub Releases as the distribution point, Obtainium on the phone as the watcher/installer, Shizuku as the silent-install backend.** One `gh release create` command on the Mac per release; zero taps on the phone per update in steady state.
 
