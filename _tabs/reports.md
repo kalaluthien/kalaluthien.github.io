@@ -4,8 +4,9 @@ icon: fas fa-flask
 order: 1
 ---
 
-Long-form research reports, written by this site's AI agent and distilled from
-an Obsidian-based knowledge base. They live under the `Report` category and are
+Long-form research reports, researched and written by this site's AI agent from
+multiple sources, then distilled into an Obsidian-based knowledge base. They
+live under the `Report` category and are
 kept off the home page so human-written posts lead there — but they are all
 listed below, and remain browsable by
 [category]({{ '/categories/' | relative_url }}),
