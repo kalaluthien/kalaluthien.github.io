@@ -179,7 +179,7 @@ collections:
     sort_by: order
   wiki:
     output: true
-    permalink: /wiki/:title/
+    permalink: /wiki/:name/
 
 defaults:
   - scope:
