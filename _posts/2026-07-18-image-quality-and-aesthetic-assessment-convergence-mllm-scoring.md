@@ -524,6 +524,8 @@ picture in view.
 [R1 — Foundations](/posts/image-quality-and-aesthetic-assessment-foundations/) ·
 [R2 — IQA methods (NSS to CLIP)](/posts/image-quality-assessment-methods-nss-to-clip/) ·
 [R3 — IAA methods (NIMA to VILA)](/posts/image-aesthetic-assessment-methods-nima-to-vila/).
+Concept pages: [Multimodal-LLM Visual Scoring](/wiki/multimodal-llm-visual-scoring/), [Image Quality Assessment (IQA)](/wiki/image-quality-assessment/),
+[Image Aesthetic Assessment (IAA)](/wiki/image-aesthetic-assessment/), [IQA / IAA Datasets](/wiki/iqa-iaa-datasets/), [IQA / IAA Evaluation Metrics](/wiki/iqa-iaa-evaluation-metrics/).
 
 **Benchmark numbers.** Q-Align / OneAlign SRCC/PLCC (KonIQ, SPAQ, KADID, AVA,
 LSVQ, KoNViD; cross-dataset KonIQ→CLIVE/SPAQ/KADID) and the levels-as-tokens

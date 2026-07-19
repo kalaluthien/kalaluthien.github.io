@@ -553,9 +553,9 @@ accuracies (74.46 %/75.42 %) from the [Deng et al. deep-IAA survey
 (arXiv:1610.00838)](https://arxiv.org/abs/1610.00838) tabulating the two RAPID
 papers; MUSIQ and VILA AVA SRCC/PLCC cross-checked between the MUSIQ paper and
 VILA's comparison table; AADB ρ from the AADB paper; Q-Align reference number
-from R1's frontier table. AVA/AADB/PARA dataset facts and the metrics
-(SRCC/PLCC, squared-EMD) trace to the IQA/IAA datasets and evaluation-metrics
-concept notes.
+from R1's frontier table. AVA/AADB/PARA dataset facts via
+[IQA / IAA Datasets](/wiki/iqa-iaa-datasets/); metrics (SRCC/PLCC, squared-EMD) via
+[IQA / IAA Evaluation Metrics](/wiki/iqa-iaa-evaluation-metrics/).
 
 **Flagged as not fully verified against a primary source** (stated, not asserted
 as fact): **TANet's** exact AVA SRCC/PLCC decimals (≈ 0.758/0.765) are from a
