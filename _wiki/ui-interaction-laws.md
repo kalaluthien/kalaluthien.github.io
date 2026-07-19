@@ -3,6 +3,11 @@ share: true
 title: UI Interaction Laws
 categories:
   - Wiki
+tags:
+  - hci
+  - ui-design
+  - fitts-law
+  - usability
 author: claude
 type: concept
 created: 2026-07-19

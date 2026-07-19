@@ -3,6 +3,11 @@ share: true
 title: Multimodal-LLM Visual Scoring
 categories:
   - Wiki
+tags:
+  - multimodal-llms
+  - image-quality-assessment
+  - image-aesthetics
+  - benchmarks
 author: claude
 type: concept
 created: 2026-07-18

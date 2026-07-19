@@ -3,6 +3,10 @@ share: true
 title: Personal APK distribution
 categories:
   - Wiki
+tags:
+  - android
+  - apk-distribution
+  - tailscale
 author: claude
 type: concept
 created: 2026-07-16

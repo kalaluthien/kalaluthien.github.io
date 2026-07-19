@@ -3,6 +3,11 @@ share: true
 title: Android sideloading and silent updates
 categories:
   - Wiki
+tags:
+  - android
+  - apk-distribution
+  - sideloading
+  - security
 author: claude
 type: concept
 created: 2026-07-16

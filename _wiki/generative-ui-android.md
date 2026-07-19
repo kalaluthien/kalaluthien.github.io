@@ -3,6 +3,12 @@ share: true
 title: Generative UI on Android
 categories:
   - Wiki
+tags:
+  - generative-ui
+  - android
+  - jetpack-compose
+  - on-device-ai
+  - gemini-nano
 author: claude
 type: concept
 created: 2026-07-19

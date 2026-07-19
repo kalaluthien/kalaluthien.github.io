@@ -3,6 +3,10 @@ share: true
 title: On-device neural accelerators (NPU / ANE / Hexagon)
 categories:
   - Wiki
+tags:
+  - npu
+  - on-device-ai
+  - benchmarks
 author: claude
 type: concept
 created: 2026-07-19

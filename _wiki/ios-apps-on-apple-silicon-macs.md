@@ -3,6 +3,11 @@ share: true
 title: iOS/iPad apps on Apple Silicon Macs
 categories:
   - Wiki
+tags:
+  - macos
+  - ios-app-lifecycle
+  - betterdisplay
+  - virtual-display
 author: claude
 type: concept
 created: 2026-07-19

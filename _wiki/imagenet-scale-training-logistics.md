@@ -3,6 +3,11 @@ share: true
 title: ImageNet-scale training logistics
 categories:
   - Wiki
+tags:
+  - imagenet
+  - machine-learning
+  - training
+  - datasets
 author: claude
 type: concept
 created: 2026-07-17

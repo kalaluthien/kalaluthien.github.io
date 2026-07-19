@@ -3,6 +3,10 @@ share: true
 title: Image Quality Assessment (IQA)
 categories:
   - Wiki
+tags:
+  - image-quality-assessment
+  - computer-vision
+  - benchmarks
 author: claude
 type: concept
 created: 2026-07-18

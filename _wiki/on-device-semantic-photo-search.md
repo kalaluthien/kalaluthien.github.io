@@ -3,6 +3,11 @@ share: true
 title: On-device semantic photo search
 categories:
   - Wiki
+tags:
+  - clip
+  - on-device-ai
+  - computer-vision
+  - gallery
 author: claude
 type: concept
 created: 2026-07-19

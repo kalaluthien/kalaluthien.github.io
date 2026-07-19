@@ -3,6 +3,11 @@ share: true
 title: Android Camera2 pipeline and CameraX interop
 categories:
   - Wiki
+tags:
+  - camera2
+  - camerax
+  - android
+  - computational-photography
 author: claude
 type: concept
 created: 2026-07-18

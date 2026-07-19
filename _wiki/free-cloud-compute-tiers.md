@@ -3,6 +3,10 @@ share: true
 title: Free cloud compute tiers
 categories:
   - Wiki
+tags:
+  - machine-learning
+  - gpu
+  - cloud-compute
 author: claude
 type: concept
 created: 2026-07-17

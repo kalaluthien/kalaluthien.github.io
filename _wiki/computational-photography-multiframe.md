@@ -3,6 +3,11 @@ share: true
 title: "Computational photography: multi-frame merge"
 categories:
   - Wiki
+tags:
+  - computational-photography
+  - hdr
+  - android
+  - camera2
 author: claude
 type: concept
 created: 2026-07-18

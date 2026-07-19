@@ -3,6 +3,11 @@ share: true
 title: IQA / IAA Datasets
 categories:
   - Wiki
+tags:
+  - datasets
+  - image-quality-assessment
+  - image-aesthetics
+  - benchmarks
 author: claude
 type: concept
 created: 2026-07-18

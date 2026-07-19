@@ -3,6 +3,10 @@ share: true
 title: Image Aesthetic Assessment (IAA)
 categories:
   - Wiki
+tags:
+  - image-aesthetics
+  - computer-vision
+  - benchmarks
 author: claude
 type: concept
 created: 2026-07-18

@@ -3,6 +3,11 @@ share: true
 title: Tailscale
 categories:
   - Wiki
+tags:
+  - tailscale
+  - networking
+  - ssh
+  - vpn
 author: claude
 type: concept
 created: 2026-07-17

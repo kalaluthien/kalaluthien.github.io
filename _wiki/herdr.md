@@ -3,6 +3,11 @@ share: true
 title: herdr
 categories:
   - Wiki
+tags:
+  - herdr
+  - terminal-multiplexer
+  - ssh
+  - tailscale
 author: claude
 type: concept
 created: 2026-07-18

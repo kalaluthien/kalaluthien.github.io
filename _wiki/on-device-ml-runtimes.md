@@ -3,6 +3,11 @@ share: true
 title: On-device ML runtimes (Core ML vs LiteRT)
 categories:
   - Wiki
+tags:
+  - on-device-ai
+  - core-ml
+  - npu
+  - android
 author: claude
 type: concept
 created: 2026-07-19

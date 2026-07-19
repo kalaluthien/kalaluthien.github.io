@@ -3,6 +3,11 @@ share: true
 title: IQA / IAA Evaluation Metrics
 categories:
   - Wiki
+tags:
+  - image-quality-assessment
+  - image-aesthetics
+  - benchmarks
+  - evaluation-metrics
 author: claude
 type: concept
 created: 2026-07-18

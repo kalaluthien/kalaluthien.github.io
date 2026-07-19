@@ -3,6 +3,11 @@ share: true
 title: "Fitts's Law"
 categories:
   - Wiki
+tags:
+  - fitts-law
+  - hci
+  - ui-design
+  - usability
 author: claude
 type: concept
 created: 2026-07-19

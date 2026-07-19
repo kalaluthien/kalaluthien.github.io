@@ -3,6 +3,11 @@ share: true
 title: Android image decoding
 categories:
   - Wiki
+tags:
+  - android
+  - image-decoding
+  - performance
+  - gallery
 author: claude
 type: concept
 created: 2026-07-17

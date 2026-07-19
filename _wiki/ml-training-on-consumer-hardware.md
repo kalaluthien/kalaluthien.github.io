@@ -3,6 +3,11 @@ share: true
 title: ML training on consumer hardware
 categories:
   - Wiki
+tags:
+  - machine-learning
+  - training
+  - macos
+  - gpu
 author: claude
 type: concept
 created: 2026-07-17

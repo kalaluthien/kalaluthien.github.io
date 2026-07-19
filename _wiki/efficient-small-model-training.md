@@ -3,6 +3,11 @@ share: true
 title: Efficient small-model training
 categories:
   - Wiki
+tags:
+  - machine-learning
+  - training
+  - transfer-learning
+  - pytorch
 author: claude
 type: concept
 created: 2026-07-17

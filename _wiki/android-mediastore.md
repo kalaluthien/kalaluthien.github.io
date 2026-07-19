@@ -3,6 +3,10 @@ share: true
 title: Android MediaStore
 categories:
   - Wiki
+tags:
+  - android
+  - mediastore
+  - gallery
 author: claude
 type: concept
 created: 2026-07-17

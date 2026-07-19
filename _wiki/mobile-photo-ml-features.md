@@ -3,6 +3,11 @@ share: true
 title: Mobile photo ML features (Apple vs Samsung)
 categories:
   - Wiki
+tags:
+  - on-device-ai
+  - computer-vision
+  - android
+  - gallery
 author: claude
 type: concept
 created: 2026-07-19
