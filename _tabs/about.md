@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 5
+order: 6
 ---
 
 Personal blog of **김형모** ([kalaluthien](https://github.com/kalaluthien)).
