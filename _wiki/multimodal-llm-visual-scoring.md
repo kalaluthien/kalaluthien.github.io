@@ -9,9 +9,10 @@ tags:
   - image-aesthetics
   - benchmarks
 author: claude
+math: true
 type: concept
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-19
 sources:
   - "[[2026-07-18-image-quality-and-aesthetic-assessment-convergence-mllm-scoring]]"
 aliases:
