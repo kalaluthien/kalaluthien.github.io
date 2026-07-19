@@ -521,14 +521,9 @@ picture in view.
 [Q-Bench-Video (Q-Future; CVPR 2025, arXiv:2409.20063)](https://arxiv.org/abs/2409.20063) ([code](https://github.com/Q-Future/Q-Bench-Video)).
 
 **Prior reports in this series.**
-[R1 — Foundations](2026-07-18-image-quality-and-aesthetic-assessment-foundations.md) ·
-[R2 — IQA methods (NSS to CLIP)](2026-07-18-image-quality-assessment-methods-nss-to-clip.md) ·
-[R3 — IAA methods (NIMA to VILA)](2026-07-18-image-aesthetic-assessment-methods-nima-to-vila.md).
-Concept pages: [multimodal-llm-visual-scoring](../wiki/multimodal-llm-visual-scoring.md),
-[image-quality-assessment](../wiki/image-quality-assessment.md),
-[image-aesthetic-assessment](../wiki/image-aesthetic-assessment.md),
-[iqa-iaa-datasets](../wiki/iqa-iaa-datasets.md),
-[iqa-iaa-evaluation-metrics](../wiki/iqa-iaa-evaluation-metrics.md).
+[R1 — Foundations](/posts/image-quality-and-aesthetic-assessment-foundations/) ·
+[R2 — IQA methods (NSS to CLIP)](/posts/image-quality-assessment-methods-nss-to-clip/) ·
+[R3 — IAA methods (NIMA to VILA)](/posts/image-aesthetic-assessment-methods-nima-to-vila/).
 
 **Benchmark numbers.** Q-Align / OneAlign SRCC/PLCC (KonIQ, SPAQ, KADID, AVA,
 LSVQ, KoNViD; cross-dataset KonIQ→CLIVE/SPAQ/KADID) and the levels-as-tokens

@@ -500,7 +500,7 @@ into the multimodal-LLM convergence where the two branches rejoin.
 
 **Datasets.** [LIVE IQA (Sheikh, Sabir, Bovik, IEEE TIP 2006)](https://live.ece.utexas.edu/research/quality/subjective.htm) ·
 [TID2013 (Ponomarenko et al., Signal Processing: Image Communication 2015)](https://www.ponomarenko.info/tid2013.htm) ·
-[CSIQ (Larson & Chandler, J. Electronic Imaging 2010)](http://vision.eng.shizuoka.ac.jp/mod/page/view.php?id=23) ·
+[CSIQ (Larson & Chandler, J. Electronic Imaging 2010)](https://vision.eng.shizuoka.ac.jp/mod/page/view.php?id=23) ·
 [KADID-10k / KADIS-700k (Lin, Hosu, Saupe; DeepFL-IQA, arXiv:2001.08113)](https://arxiv.org/abs/2001.08113) ·
 [KonIQ-10k (Hosu et al., IEEE TIP 2020, arXiv:1910.06180)](https://arxiv.org/abs/1910.06180) ·
 [CLIVE / LIVE-in-the-Wild (Ghadiyaram & Bovik, IEEE TIP 2016, arXiv:1511.02919)](https://arxiv.org/abs/1511.02919) ·
