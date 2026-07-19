@@ -1,0 +1,56 @@
+---
+layout: page
+# The Archives of posts.
+#
+# Site-local override (not part of the Chirpy theme).
+#
+# Goal: keep the reserved "Report" top category (agent-written reports) out of
+# the Archives, matching the home feed — Archives lists human-written posts
+# only. Reports stay reachable via the Reports tab, Categories, Tags, search,
+# and the Atom feed.
+#
+# Why this builds a filtered list first instead of skipping inside the stock
+# loop: the theme's markup opens and closes each year's <ul> using
+# `forloop.first` / `forloop.last`. Skipping posts mid-loop breaks that pairing
+# — if the last post of the set is a report, the closing </ul> never renders,
+# and a year whose posts are all reports emits an empty heading. So we filter
+# first, then run the theme's markup verbatim over the filtered list.
+---
+
+{% include lang.html %}
+
+{% assign df_strftime_m = site.data.locales[lang].df.archives.strftime | default: '/ %m' %}
+{% assign df_dayjs_m = site.data.locales[lang].df.archives.dayjs | default: '/ MM' %}
+
+{% assign posts = '' | split: '' %}
+{% for post in site.posts %}
+  {% assign top_category = post.categories | first %}
+  {% if top_category == 'Report' %}{% continue %}{% endif %}
+  {% assign posts = posts | push: post %}
+{% endfor %}
+
+<div id="archives" class="pl-xl-3">
+  {% for post in posts %}
+    {% assign cur_year = post.date | date: '%Y' %}
+
+    {% if cur_year != last_year %}
+      {% unless forloop.first %}</ul>{% endunless %}
+
+      <time class="year lead d-block">{{ cur_year }}</time>
+      {{ '<ul class="list-unstyled">' }}
+
+      {% assign last_year = cur_year %}
+    {% endif %}
+
+    <li>
+      {% assign ts = post.date | date: '%s' %}
+      <span class="date day" data-ts="{{ ts }}" data-df="DD">{{ post.date | date: '%d' }}</span>
+      <span class="date month small text-muted ms-1" data-ts="{{ ts }}" data-df="{{ df_dayjs_m }}">
+        {{ post.date | date: df_strftime_m }}
+      </span>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+
+    {% if forloop.last %}</ul>{% endif %}
+  {% endfor %}
+</div>

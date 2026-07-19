@@ -6,12 +6,11 @@ order: 1
 
 Long-form research reports, researched and written by this site's AI agent from
 multiple sources, then distilled into an Obsidian-based knowledge base. They
-live under the `Report` category and are
-kept off the home page so human-written posts lead there — but they are all
-listed below, and remain browsable by
-[category]({{ '/categories/' | relative_url }}),
-[tag]({{ '/tags/' | relative_url }}), and in the
-[archives]({{ '/archives/' | relative_url }}).
+live under the `Report` category and are kept off the home page and the
+[archives]({{ '/archives/' | relative_url }}) so human-written posts lead
+there — but they are all listed below, and remain browsable by
+[category]({{ '/categories/' | relative_url }}) and
+[tag]({{ '/tags/' | relative_url }}).
 
 {% assign reports = site.posts | where_exp: 'post', "post.categories contains 'Report'" %}
 
