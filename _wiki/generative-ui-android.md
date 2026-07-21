@@ -161,7 +161,7 @@ Distinct from the vault's Android systems pages ([Android image decoding](/wiki/
 [Android Camera2 pipeline and CameraX interop](/wiki/android-camera2-pipeline/), [Android MediaStore](/wiki/android-mediastore/)) — those cover the media
 pipeline, not AI-driven or model-generated UI; no direct relation.
 
-android-llm-inference surveys "run any LLM I chose" runtimes (LiteRT-LM,
+[LLM inference on Android](/wiki/android-llm-inference/) surveys "run any LLM I chose" runtimes (LiteRT-LM,
 llama.cpp, Qualcomm Genie) as a different tool from the fixed task APIs here.
 
 > ⚠️ Contradiction: this page states published AICore performance — prefill

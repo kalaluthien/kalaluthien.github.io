@@ -15,6 +15,7 @@ sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
   - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
   - "[[2026-07-21-running-small-llms-on-android]]"
+  - "[[2026-07-21-google-ai-edge-gallery]]"
 aliases:
   - NPU
   - Apple Neural Engine
@@ -67,7 +68,21 @@ running W4A16-quantized models from Qualcomm AI Hub, it dispatches onto the
 Hexagon NPU by design (≈5–10 tok/s decode on Llama-3B/8B-class models, prior-
 generation Snapdragon 8 Elite) — the NPU path exists for LLMs, it is just
 narrow (curated model list, per-chipset calibrated compile step) rather than
-the default. See android-llm-inference for the runtime-by-runtime detail.
+the default. See [LLM inference on Android](/wiki/android-llm-inference/) for the runtime-by-runtime detail.
+
+**The vendor-fragmentation side of this problem, concretely, per vendor**:
+Google's own LiteRT-LM/Gallery issue tracker shows the NPU path failing in a
+different way for each silicon vendor, not one uniform "unsupported" state —
+MediaTek is not supported at all and the app crashes rather than falling
+back; Qualcomm, the best-supported vendor, still hits QNN system-library
+version mismatches on specific chip/driver combinations; Samsung Exynos
+fails at engine creation for every model tried; Intel's own VPU generations
+are not interchangeable with each other; and even Google's first-party
+Tensor G5 fails, via a TPU driver refusing to re-map the same weight buffer
+for prefill and decode (DMA-buf exhaustion) — a hardware/driver limit, not a
+missing operator. See [Google AI Edge Gallery](/wiki/google-ai-edge-gallery/) for the full, GitHub-issue-
+sourced list; it is the same operator-coverage/vendor-fragmentation argument
+as above, evidenced from LiteRT-LM's dispatch mechanism instead of Genie's.
 
 ## Bandwidth- and thermal-bound, not FLOP-bound
 
@@ -119,8 +134,11 @@ NPU-TOPS ladder for Galaxy as false precision.
   onto this silicon (Core ML vs LiteRT + vendor delegates).
 - on-device-llm-inference — local LLM runtimes as a concrete, current
   example of a workload that mostly stays off this silicon.
-- android-llm-inference — the exception: Qualcomm's Genie stack, the one
+- [LLM inference on Android](/wiki/android-llm-inference/) — the exception: Qualcomm's Genie stack, the one
   LLM path in this survey that does dispatch onto the Hexagon NPU.
+- [Google AI Edge Gallery](/wiki/google-ai-edge-gallery/) — the per-vendor NPU failure evidence
+  (MediaTek, Qualcomm, Samsung Exynos, Intel VPU, Google Tensor) cited above,
+  sourced from the LiteRT-LM/Gallery issue trackers.
 - [Mobile photo ML features (Apple vs Samsung)](/wiki/mobile-photo-ml-features/) — the Camera/Gallery features these accelerators run.
 - [Efficient small-model training](/wiki/efficient-small-model-training/) — the architectures (MobileNetV3/V4) that map
   onto the MAC array; note "efficient" means cheap at *inference*.

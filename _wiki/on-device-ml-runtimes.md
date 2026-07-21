@@ -107,7 +107,7 @@ decode](/wiki/android-image-decoding/) layers; the ML runtime is a separate conc
 - on-device-llm-inference — the third-party-runtime analog for
   general-purpose LLMs (llama.cpp, Ollama, MLX, MLC LLM, ExecuTorch) rather
   than the first-party Core ML / LiteRT stack this page covers.
-- android-llm-inference — the LLM-specific layer on this page's
+- [LLM inference on Android](/wiki/android-llm-inference/) — the LLM-specific layer on this page's
   Android/vendor-delegate picture: LiteRT-LM, Qualcomm Genie/GenieX (the
   concrete Hexagon-NPU-dispatch case for QNN/QAIRT), ONNX Runtime GenAI, and
   a device-named bandwidth roofline.
