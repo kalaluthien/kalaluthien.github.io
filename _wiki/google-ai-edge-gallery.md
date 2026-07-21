@@ -16,6 +16,7 @@ created: 2026-07-21
 updated: 2026-07-21
 sources:
   - "[[2026-07-21-google-ai-edge-gallery]]"
+  - "[[2026-07-21-tool-use-agent-loops-on-device]]"
 aliases:
   - Google AI Edge Gallery
   - AI Edge Gallery
@@ -342,7 +343,14 @@ repo's client credentials are literal placeholders.
   specifically with Thinking Mode enabled (#703) — a counterexample against
   treating every crash as a pure capacity problem.
 - **Unbounded KV-cache growth in long chats** (#856): crashes outright on
-  GPU/NPU past a hidden token ceiling; loops instead on CPU.
+  GPU/NPU past a hidden token ceiling; loops instead on CPU. **Root cause
+  identified**: LiteRT-LM's raw KV-cache primitives (`SaveCheckpoint`,
+  `RewindToCheckpoint`, `ClearKVCache`, `DeleteTokensFromKvCache`) exist with
+  no coordinating eviction policy ([LiteRT-LM #1878](https://github.com/google-ai-edge/LiteRT-LM/issues/1878),
+  open) — nothing in the runtime trims old turns as context grows, so any app
+  built on it (Gallery included) must implement its own context-window
+  eviction. See on-device-agent-tool-loops for the fuller KV-cache-reuse
+  survey this traces from.
 - **No graceful degradation on CPUs lacking modern SIMD**: raw `SIGILL` on
   devices without ARM NEON/SVE, or an unexplained *"OpenCL library was not
   found"* (#543).
@@ -361,9 +369,15 @@ repo's client credentials are literal placeholders.
   on top of.
 - [Generative UI on Android](/wiki/generative-ui-android/) — the app's second, independent execution path
   (Android AICore / ML Kit GenAI), not part of the LiteRT-LM stack above.
+- on-device-agent-tool-loops — reuses this page's Gemma-4-E2B benchmark
+  table for prefill/decode cost arithmetic, and carries the fuller KV-cache-
+  reuse survey (llama.cpp, LiteRT-LM, MLC LLM, ExecuTorch) behind the
+  #856/#1878 root-cause explanation above.
 
 ## Sources
 
 - [Google AI Edge Gallery: Codebases, Features, Models, and Failure Modes](/posts/google-ai-edge-gallery/) — the report this page is drawn
   from in full; every claim above traces to a file path, class, commit
   hash, or GitHub issue cited there.
+- [Tool-Use Agent Loops for a Small Fixed Tool Set: Patterns, Structured Output, and On-Device Costs](/posts/tool-use-agent-loops-on-device/) — root-cause source for the
+  #856 KV-cache-growth explanation above (LiteRT-LM issue #1878).

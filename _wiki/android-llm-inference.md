@@ -258,3 +258,5 @@ above), not whether the weights fit in memory.
   surface, LoRA adapters, fragmentation); see the contradiction above.
 - [Personal APK distribution](/wiki/personal-apk-distribution/), [Android sideloading and silent updates](/wiki/android-sideloading-and-silent-updates/) —
   the sideload pipeline the ready-made apps above fit into.
+- on-device-agent-tool-loops — reuses this page's Galaxy S26 Ultra device
+  framing for a tool-use agent loop's prefill/decode cost arithmetic.
