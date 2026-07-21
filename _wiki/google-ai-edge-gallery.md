@@ -146,11 +146,26 @@ The canonical feature list is `object BuiltInTaskId`:
 | **Ask Image** | same `Engine`, `supportImage = true`; vision pinned to GPU by the allowlist |
 | **Audio Scribe** | same `Engine`, `supportAudio = true`; audio backend hard-pinned to CPU ("must be CPU for Gemma 3n") |
 | **Prompt Lab** | same `Engine`, single-turn, no conversation history |
-| **Agent Skills** | real tool/function calling over the **Model Context Protocol** (`io.modelcontextprotocol:kotlin-sdk`); a `ToolProvider` list flows into `ConversationConfig(tools = ...)` |
-| **Mobile Actions**, **Tiny Garden** | same MCP tool-calling path, running a FunctionGemma-270M fine-tune each |
+| **Agent Skills** | real tool/function calling; a `ToolProvider` list flows into `ConversationConfig(tools = ...)`. Four tool backends live in `ToolDispatcher.kt`, of which the **Model Context Protocol** (`io.modelcontextprotocol:kotlin-sdk`, `RunMcpTool.kt`) is one — not a requirement of the mechanism as a whole |
+| **Mobile Actions**, **Tiny Garden** | the same tool-calling path (not necessarily the MCP backend specifically), running a FunctionGemma-270M fine-tune each |
 
-**"Function calling" in this stack is named Agent Skills**, and it is
-genuine structured tool-calling through MCP, not a bespoke JSON schema.
+**"Function calling" in this stack is named Agent Skills**, and it is genuine
+structured tool-calling — but **correction: MCP is one tool backend among
+several, not a requirement of Agent Skills as a whole.** LiteRT-LM itself
+ships a plain reflection-based Kotlin tool API with no MCP dependency at
+all — `@Tool`/`@ToolParam`-annotated methods on a `ToolSet` interface, wrapped
+via `tool()` into a `ToolProvider`
+(`kotlin/java/com/google/ai/edge/litertlm/Tool.kt`, `Config.kt`). Gallery's
+own `ToolDefinition.kt` (`interface ToolDefinition : ToolSet`) uses this
+native path for most tools; MCP shows up only inside one *specific* tool
+implementation (`RunMcpTool.kt`) that exposes a single generic
+`runMcpTool(toolName, input)` function and internally dispatches to an MCP
+server. MCP is Gallery's own layered choice for one tool, not something the
+underlying library requires. See on-device-agent-tool-loops for the fuller
+tool-calling-API-surface picture, including that MediaPipe's older
+`LlmInference` API never had *any* tool-calling surface at all, at any point
+in its source history — a full grep of its Java tree for `tool`/`function`
+returns only an unrelated `java.util.function.Function` lambda usage.
 
 **There is no RAG feature anywhere in this codebase** — no embedding model,
 no vector store, no retrieval step; a full-tree search for `rag`, `embed`,
@@ -222,6 +237,17 @@ row of an eleven-row table**, sourced from `developers.google.com/edge/litert-lm
 | Windows (Intel Lunar Lake) | CPU | 435 | 30 | 2.4 |
 | Windows (Intel Lunar Lake) | GPU | 3,751 | 48 | 0.3 |
 | IoT (Raspberry Pi 5, 16 GB) | CPU | 133 | 8 | 7.8 |
+
+**Independently corroborated, not just self-reported.** A journalist
+benchmark (Beebom) ran the exact target stack — **Gemma 4 E2B through this
+app on LiteRT-LM** — across real current-generation devices and measured a
+Galaxy S26 Ultra GPU at **TTFT 0.13 s, decode 48.55 tok/s**, closely matching
+the 52 tok/s figure above from an independent methodology and device sample.
+The same test found an iPhone Air (A19 Pro) GPU at 51.28 tok/s, a Vivo X300
+Pro (Dimensity 9500) GPU at only 16.45 tok/s, and a Pixel 10 Pro Fold
+(Tensor G5) CPU at 10.42 tok/s with a 1.65 s TTFT — a reminder the 52 tok/s
+figure is Snapdragon-flagship-specific, not universal even among current
+phones.
 
 **GPU decode ranges 8–160 tok/s across this table, not a single figure**: a
 MacBook Pro M4 Max hits 160 tok/s (3× the Galaxy S26 Ultra number), an RTX
