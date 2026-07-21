@@ -15,6 +15,7 @@ updated: 2026-07-22
 sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
   - "[[2026-07-22-tflite-object-detection-survey]]"
+  - "[[2026-07-22-on-device-face-detection-recognition-tflite]]"
 aliases:
   - Scene Optimizer
   - Apple scene classification
@@ -60,6 +61,17 @@ names an architecture and never publishes a per-feature NPU budget** — so Appl
   *source* is a 2024 U.S. court BIPA dismissal describing templates as generated
   and stored **on the device**, not alleged transmitted. ⚠️ That is a pleadings
   finding, not a "never cloud" guarantee; architecture proprietary/unknown.
+- **What's actually available open-source, if building this yourself**: see
+  on-device-face-detection-recognition. Detection is a solved, permissively
+  licensed problem (MediaPipe BlazeFace, Apache-2.0; OpenCV YuNet, MIT). Face
+  **recognition** is not — no first-party TFLite exists from anyone, and almost
+  every credible open recognition model is blocked by its *training data*
+  (MS-Celeb-1M retracted 2019, Glint360K/WebFace/VGGFace2 all research-only),
+  regardless of its code license. SFace (OpenCV Zoo, Apache-2.0) is the one
+  free-commercial candidate, verified there as a working TFLite conversion with
+  an open training-data question. Neither Apple's two-network embeddings nor
+  Samsung's proprietary faceprint templates map onto any of these open models —
+  this is what a from-scratch build would use, not what either vendor ships.
 
 ### OCR / text-in-images
 - **Apple Live Text** — on-device via Vision's `VNRecognizeTextRequest`; shipped
@@ -142,3 +154,7 @@ import it as if it described these products.)
   landscape, licensing fork, and measured cost a shipped detector feature on
   this page would draw from (neither Apple nor Samsung documents an
   architecture for their own scene/object detection).
+- on-device-face-detection-recognition — the concrete open-source `.tflite`
+  detection/recognition landscape behind this page's Face detection &
+  clustering section, including the training-data licensing verdict neither
+  Apple nor Samsung has to navigate since their models are proprietary.

@@ -17,6 +17,7 @@ sources:
   - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
   - "[[2026-07-21-running-small-llms-on-android]]"
   - "[[2026-07-22-tflite-object-detection-survey]]"
+  - "[[2026-07-22-on-device-face-detection-recognition-tflite]]"
 aliases:
   - Core ML
   - LiteRT
@@ -122,3 +123,7 @@ decode](/wiki/android-image-decoding/) layers; the ML runtime is a separate conc
 - on-device-object-detection — a concrete workload measured on exactly this
   layer's CPU/XNNPACK path (LiteRT's four PTQ schemes and the GPU-delegate
   latency gap both show up directly in that page's benchmark).
+- on-device-face-detection-recognition — another concrete workload on
+  this layer's CPU/XNNPACK path, including a case where a converted fp16
+  `.tflite` file fails to load on XNNPACK at all and needs the GPU delegate
+  this page describes as the portable Android fallback.

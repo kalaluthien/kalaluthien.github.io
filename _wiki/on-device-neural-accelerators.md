@@ -17,6 +17,7 @@ sources:
   - "[[2026-07-21-running-small-llms-on-android]]"
   - "[[2026-07-21-google-ai-edge-gallery]]"
   - "[[2026-07-22-tflite-object-detection-survey]]"
+  - "[[2026-07-22-on-device-face-detection-recognition-tflite]]"
 aliases:
   - NPU
   - Apple Neural Engine
@@ -64,7 +65,14 @@ LLM side for most runtimes: llama.cpp, Ollama, MLX, MLC LLM, and ExecuTorch's
 XNNPACK path (surveyed in on-device-llm-inference) all run on CPU/GPU, not
 the ANE or Hexagon NPU, because a decoder-only transformer's dynamic shapes
 and non-GEMM ops (softmax, RoPE, an SSM/linear-attention scan) are exactly
-this operator-coverage gap. **Qualcomm's Genie is the concrete exception**:
+this operator-coverage gap. A narrower, load-time instance of the same gap: a self-converted SFace
+face-recognition TFLite file's fp16 build fails to *load at all* on
+CPU/XNNPACK (`CONV_2D node 2 failed to prepare: input_type must be
+float32/uint8/int8/int16`) and needs a GPU delegate instead — see
+on-device-face-detection-recognition. Conversion succeeding is not even
+the same claim as loading succeeding, let alone running well.
+
+**Qualcomm's Genie is the concrete exception**:
 running W4A16-quantized models from Qualcomm AI Hub, it dispatches onto the
 Hexagon NPU by design (≈5–10 tok/s decode on Llama-3B/8B-class models, prior-
 generation Snapdragon 8 Elite) — the NPU path exists for LLMs, it is just
@@ -147,3 +155,7 @@ NPU-TOPS ladder for Galaxy as false precision.
   CPU/XNNPACK-only, no GPU/NNAPI/Core ML delegate engaged; its Ultralytics
   Snapdragon 8 Elite numbers (52.4 ms CPU vs. 13.5 ms Adreno GPU for YOLO26n)
   are a concrete instance of this page's bandwidth/dispatch argument.
+- on-device-face-detection-recognition — the SFace fp16 TFLite conversion
+  that fails to load on CPU/XNNPACK and needs a GPU delegate, cited above; a
+  face-detection/recognition benchmark on the same CPU/XNNPACK-only M4 setup
+  as the object-detection page.
