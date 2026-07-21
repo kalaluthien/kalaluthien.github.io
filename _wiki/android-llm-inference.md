@@ -67,7 +67,7 @@ runtimes with no cross-platform equivalent:
 
 | Runtime | Backends on Android | Device-named benchmark | Model breadth | License |
 |---|---|---|---|---|
-| **Google AI Edge / LiteRT-LM** (successor to the now-maintenance-only MediaPipe LLM Inference API) | CPU (XNNPACK), GPU, NPU (compile-time optional, no NPU row published for the current model — see below) | **52 tok/s, Gemma 3n/4 E2B, GPU, Galaxy S26 Ultra** — the only runtime in this survey with a number naming this exact phone (Google blog, May 2026) | Gemma, Llama, Phi-4, Qwen (curated) | Apache-2.0 |
+| **Google AI Edge / LiteRT-LM** (successor to the now-maintenance-only MediaPipe LLM Inference API) | CPU (XNNPACK), GPU, NPU (ships by default on Android; gated at runtime on a per-vendor `dlopen`. No NPU row for the current model in Google's docs table — the one published Gemma-4 NPU figure is on embedded silicon, not a phone — see below) | **52 tok/s, Gemma 3n/4 E2B, GPU, Galaxy S26 Ultra** — the only runtime in this survey with a number naming this exact phone (Google blog, May 2026) | Gemma, Llama, Phi-4, Qwen (curated) | Apache-2.0 |
 | **ONNX Runtime GenAI** | CPU; QNN/NNAPI execution providers unclear/in-progress | none found; open packaging bugs (wrong-arch `.so`, undocumented Android build) | Good on paper, poor in practice on Android | MIT |
 | **Qualcomm QNN / Genie / GenieX** (via AI Hub) | Hexagon NPU (Genie); CPU/GPU/NPU (GenieX wraps llama.cpp + QAIRT) | Llama-3.2-3B ≈10 tok/s, Llama-3.1-8B ≈5 tok/s, W4A16 on Hexagon — pinned to the *prior*-generation plain Snapdragon 8 Elite, not confirmed for 8 Elite Gen 5 | Curated (AI Hub gallery); gated models (Llama) need self-export | BSD-3 (tooling) |
 | **Gemini Nano / AICore / ML Kit GenAI** | NPU/accelerator, opaque to the app | see contradiction, below | Fixed Google-curated model, not "any HF model" | platform service |
@@ -79,9 +79,12 @@ v0.14.0) — not a ceiling. GPU decode ranges from 8 tok/s (Raspberry Pi 5,
 CPU floor) up to **160 tok/s on a MacBook Pro M4 Max** and 143 tok/s on an
 RTX 4090, roughly 3× the Galaxy S26 Ultra figure. **No row in that table is
 NPU** — the "NPU (claimed, vendor-unconfirmed)" column above is not a gap in
-this survey's sourcing, it reflects a structural fact: the NPU executor is
-compile-time optional and the default vendor dispatch is a stub requiring a
-real per-vendor `.so`. Full table, per-platform breakdown, and the sourced
+this survey's sourcing, it reflects a structural fact: on Android the NPU
+executor ships by default, but binding real silicon needs a runtime `dlopen`
+of a per-vendor dispatch `.so` that is absent on most devices, and the loader
+then fails hard rather than degrading. (`LITERT_DISABLE_NPU` is compile-time,
+but selected only on iOS.) One Gemma-4 NPU figure is published off-table, on
+embedded Qualcomm Dragonwing silicon rather than a handset. Full table, per-platform breakdown, and the sourced
 per-vendor NPU failure modes (MediaTek unsupported, Qualcomm QNN version
 mismatches, Intel VPU generation mismatches, even Google's own Tensor G5
 failing via DMA-buf exhaustion): [Google AI Edge Gallery](/wiki/google-ai-edge-gallery/).

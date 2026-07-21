@@ -78,6 +78,14 @@ independent execution path exists for Android's system AICore service
 [Generative UI on Android](/wiki/generative-ui-android/) for that surface in depth; it is not part of the
 LiteRT-LM path this page covers.
 
+The dependency is gone, but the naming and product copy have not caught up.
+A helper still called `cleanUpMediapipeTaskErrorMessage` (`common/Utils.kt`)
+runs on the error path of both model helpers, and allowlist entries still
+describe models as *"ready for deployment on Android using the MediaPipe LLM
+Inference API"* — user-facing text pointing at the deprecated runtime. Read
+"zero MediaPipe dependency" as a statement about the build graph, not about
+the absence of the string in the tree.
+
 **MediaPipe's GenAI `LlmInference` API is deprecated at the source level, not
 just in docs**, and Gallery never calls it. Every public class in the Java
 package carries `@Deprecated` with *"Migrate to LiteRT LM instead."* A dated
@@ -217,13 +225,20 @@ row of an eleven-row table**, sourced from `developers.google.com/edge/litert-lm
 **GPU decode ranges 8–160 tok/s across this table, not a single figure**: a
 MacBook Pro M4 Max hits 160 tok/s (3× the Galaxy S26 Ultra number), an RTX
 4090 hits 143, and a Raspberry Pi 5 floors at 8 tok/s CPU with a 7.8 s TTFT.
-**Every row is CPU or GPU — there is no NPU row for Gemma 4 anywhere in
-Google's own published table**, and no other source checked (Google's May
-2026 LiteRT-LM blog post, its April 2026 NPU blog post, or the Google Cloud
-benchmark-portal post) publishes an NPU tok/s figure for Gemma 4 either. The
-only NPU numbers found at all are on Hugging Face model cards for the
-**older** Gemma 3n (Vivo X300 Pro NPU: prefill 1,671 tok/s / decode 28.4
-tok/s) — not the model this table benchmarks.
+**Every row is CPU or GPU — there is no NPU row for Gemma 4 in Google's own
+published table.** One Gemma-4 NPU figure does exist off that table, on the
+`litert-community/gemma-4-E2B-it-litert-lm` model card's **IoT** section:
+Qualcomm Dragonwing IQ8 (IQ-8275), NPU, prefill 3,747 / decode 31.7 / TTFT
+0.3 s, from a separate NPU-converted 2,967 MB artifact at 4,096 context.
+Dragonwing IQ8 is embedded silicon, so the accurate statement is **no
+Gemma-4 NPU number for a phone**, not none at all. Older Gemma 3n NPU numbers
+also exist on Hugging Face model cards (Vivo X300 Pro NPU: prefill 1,671
+tok/s / decode 28.4 tok/s).
+
+The model card is in general a superset of the docs table — it adds Jetson
+Orin Nano and WebGPU rows, plus a speculative-decoding table where the same
+S26 Ultra reaches **91.7 tok/s** decode against a 51.5 baseline. Google's own
+numbers therefore refute reading 52 tok/s as that phone's ceiling.
 
 One more distinction worth keeping separate: the LiteRT-LM blog post's *"up
 to 76 tokens/sec on a MacBook Pro"* is a **WebGPU** number, not the same
@@ -248,11 +263,15 @@ unanswered as of this research.
 
 ### NPU support: structurally limited, not just a rollout lag
 
-The NPU executor is compile-time optional
-(`#if !defined(LITERT_DISABLE_NPU)`); the default vendor dispatch shipped
-with LiteRT is a pure stub returning "unsupported" on every call unless a
-real per-vendor `.so` is present and successfully `dlopen`s a symbol
-(`"LiteRtDispatchGetApi"`). This is the concrete, vendor-fragmented failure
+The limit is a **runtime** one, not compile-time. `LITERT_DISABLE_NPU` is
+selected only for `@platforms//os:ios` (`LiteRT-LM/runtime/executor/BUILD`),
+so on Android the NPU executor ships by default. What actually gates it is
+`dlopen` of a per-vendor dispatch `.so` and resolution of the symbol
+`"LiteRtDispatchGetApi"`; when no such library is present the loader logs
+*"No dispatch library found"* and fails hard. A pure stub returning
+"unsupported" on every call does exist in the tree
+(`litert_dispatch_dummy.cc`), but nothing depends on it — a code search finds
+it referenced only by its own `BUILD` file — so it is not the fallback path. This is the concrete, vendor-fragmented failure
 mode that [On-device neural accelerators (NPU / ANE / Hexagon)](/wiki/on-device-neural-accelerators/)'s operator-coverage argument
 predicts in the abstract — a runtime having "an NPU path" and a given
 device's NPU actually running are separate claims, and the gap is
@@ -312,9 +331,12 @@ repo's client credentials are literal placeholders.
 
 - **Crash-on-launch on Huawei's EMUI**, independent of any model download
   (#599) — unresolved as of this research.
-- **A newer OS-level memory limiter, not raw RAM**, killing a specific model:
-  Pixel 6a (6 GB) on an Android 17 beta, Gemma-4-E4B crashes consistently,
-  attributed to Android 17's new per-app `MemoryLimiter` (#701).
+- **An OS-version regression, not raw RAM**, killing a specific model: Pixel
+  6a (6 GB) on Android 17 Beta 4, Gemma-4-E4B crashes consistently having
+  worked on Beta 3 (#701). The reporter attributes this to Android 17's new
+  per-app `MemoryLimiter`, but offers a competing hypothesis (Safer Dynamic
+  Code Loading) in the same report and no maintainer has confirmed either —
+  treat the cause as open, and the regression itself as the sourced fact.
 - **A high-RAM device still failing, for a feature-specific reason**: a
   12 GB A19 Pro iPhone runs Gemma-4-E4B fine normally but crashes
   specifically with Thinking Mode enabled (#703) — a counterexample against
