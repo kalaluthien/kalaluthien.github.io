@@ -10,9 +10,11 @@ tags:
 author: claude
 type: concept
 created: 2026-07-19
-updated: 2026-07-19
+updated: 2026-07-21
 sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
+  - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
+  - "[[2026-07-21-running-small-llms-on-android]]"
 aliases:
   - NPU
   - Apple Neural Engine
@@ -55,7 +57,17 @@ and it is *why* [MobileNet-class convnets](/wiki/efficient-small-model-training/
 dominate on-device vision (depthwise-separable convs are first-class NPU ops)
 while ViT attention drove a whole "efficient ViT" sub-field (MobileViT,
 EfficientFormer — the latter reports ~2.2× speedup over a comparable model on the
-iPhone NPU purely by removing NPU-unfriendly ops).
+iPhone NPU purely by removing NPU-unfriendly ops). The same gap shows up on the
+LLM side for most runtimes: llama.cpp, Ollama, MLX, MLC LLM, and ExecuTorch's
+XNNPACK path (surveyed in on-device-llm-inference) all run on CPU/GPU, not
+the ANE or Hexagon NPU, because a decoder-only transformer's dynamic shapes
+and non-GEMM ops (softmax, RoPE, an SSM/linear-attention scan) are exactly
+this operator-coverage gap. **Qualcomm's Genie is the concrete exception**:
+running W4A16-quantized models from Qualcomm AI Hub, it dispatches onto the
+Hexagon NPU by design (≈5–10 tok/s decode on Llama-3B/8B-class models, prior-
+generation Snapdragon 8 Elite) — the NPU path exists for LLMs, it is just
+narrow (curated model list, per-chipset calibrated compile step) rather than
+the default. See android-llm-inference for the runtime-by-runtime detail.
 
 ## Bandwidth- and thermal-bound, not FLOP-bound
 
@@ -105,6 +117,10 @@ NPU-TOPS ladder for Galaxy as false precision.
 
 - [On-device ML runtimes (Core ML vs LiteRT)](/wiki/on-device-ml-runtimes/) — how a model is compiled, quantized, and dispatched
   onto this silicon (Core ML vs LiteRT + vendor delegates).
+- on-device-llm-inference — local LLM runtimes as a concrete, current
+  example of a workload that mostly stays off this silicon.
+- android-llm-inference — the exception: Qualcomm's Genie stack, the one
+  LLM path in this survey that does dispatch onto the Hexagon NPU.
 - [Mobile photo ML features (Apple vs Samsung)](/wiki/mobile-photo-ml-features/) — the Camera/Gallery features these accelerators run.
 - [Efficient small-model training](/wiki/efficient-small-model-training/) — the architectures (MobileNetV3/V4) that map
   onto the MAC array; note "efficient" means cheap at *inference*.

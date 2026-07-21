@@ -11,9 +11,10 @@ tags:
 author: claude
 type: concept
 created: 2026-07-17
-updated: 2026-07-18
+updated: 2026-07-21
 sources:
   - "[[2026-07-17-where-no-server-no-cloud-bill-stops-being-true]]"
+  - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
 aliases:
   - local ML training
   - training without a server
@@ -156,3 +157,13 @@ measured erosion, no notebook benchmarked.
   full ImageNet in **3.1 hours on one A100**, so a single consumer GPU is a
   genuinely different regime from a laptop — the blocker there becomes the
   144 GB gated download, not compute ([ImageNet-scale training logistics](/wiki/imagenet-scale-training-logistics/)).
+
+## See also
+
+- on-device-llm-inference — the same class of hardware (this page's M4)
+  on the *inference* side: rooflined LLM decode-speed estimates as the
+  sibling to this page's measured training throughput.
+- [Efficient small-model training](/wiki/efficient-small-model-training/) — the practices (transfer learning,
+  efficient architectures) that keep the training runs measured here cheap.
+- [Free cloud compute tiers](/wiki/free-cloud-compute-tiers/) — the zero-cost cloud alternative when a run
+  crosses this page's laptop threshold.

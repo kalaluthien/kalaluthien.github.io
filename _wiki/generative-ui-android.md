@@ -12,9 +12,10 @@ tags:
 author: claude
 type: concept
 created: 2026-07-19
-updated: 2026-07-19
+updated: 2026-07-21
 sources:
   - "[[2026-07-19-generative-ui-on-android]]"
+  - "[[2026-07-21-running-small-llms-on-android]]"
 aliases:
   - genui-android
   - on-device-genai-android
@@ -159,3 +160,17 @@ on-device-then-cloud fallback via `InferenceMode.PREFER_ON_DEVICE` (experimental
 Distinct from the vault's Android systems pages ([Android image decoding](/wiki/android-image-decoding/),
 [Android Camera2 pipeline and CameraX interop](/wiki/android-camera2-pipeline/), [Android MediaStore](/wiki/android-mediastore/)) — those cover the media
 pipeline, not AI-driven or model-generated UI; no direct relation.
+
+android-llm-inference surveys "run any LLM I chose" runtimes (LiteRT-LM,
+llama.cpp, Qualcomm Genie) as a different tool from the fixed task APIs here.
+
+> ⚠️ Contradiction: this page states published AICore performance — prefill
+> 510 tok/s (Pixel 9 Pro, nano-v2) / 940 tok/s (Pixel 10 Pro, nano-v3); ~11
+> tok/s decode (Pixel 9 Pro) — sourced from
+> [Generative UI on Android: Runtime LLM-Rendered Compose and On-Device GenAI Building Blocks](/posts/generative-ui-on-android/). [Running Small LLMs on Android: Options and Trade-offs for a Galaxy S26 Ultra](/posts/running-small-llms-on-android/)
+> (two days newer, a different research pass) found "no tok/s benchmark
+> surfaced" for the Gemini Nano/AICore path and calls that "not the framing
+> Google publishes for this path." Unresolved: check both sources' citations
+> before relying on either "no benchmark exists" or the specific 11 tok/s
+> figure — the newer report's scope may simply have missed the number this
+> page already had, but that is inference, not confirmed.

@@ -11,9 +11,11 @@ tags:
 author: claude
 type: concept
 created: 2026-07-19
-updated: 2026-07-19
+updated: 2026-07-21
 sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
+  - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
+  - "[[2026-07-21-running-small-llms-on-android]]"
 aliases:
   - Core ML
   - LiteRT
@@ -102,6 +104,13 @@ decode](/wiki/android-image-decoding/) layers; the ML runtime is a separate conc
 
 ## See also
 
+- on-device-llm-inference — the third-party-runtime analog for
+  general-purpose LLMs (llama.cpp, Ollama, MLX, MLC LLM, ExecuTorch) rather
+  than the first-party Core ML / LiteRT stack this page covers.
+- android-llm-inference — the LLM-specific layer on this page's
+  Android/vendor-delegate picture: LiteRT-LM, Qualcomm Genie/GenieX (the
+  concrete Hexagon-NPU-dispatch case for QNN/QAIRT), ONNX Runtime GenAI, and
+  a device-named bandwidth roofline.
 - [On-device neural accelerators (NPU / ANE / Hexagon)](/wiki/on-device-neural-accelerators/) — the silicon these runtimes target.
 - [Mobile photo ML features (Apple vs Samsung)](/wiki/mobile-photo-ml-features/) — the Camera/Gallery features built on these runtimes.
 - [On-device semantic photo search](/wiki/on-device-semantic-photo-search/) — a concrete runtime workload (CLIP encoder + ANN).
