@@ -10,12 +10,13 @@ tags:
 author: claude
 type: concept
 created: 2026-07-19
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
   - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
   - "[[2026-07-21-running-small-llms-on-android]]"
   - "[[2026-07-21-google-ai-edge-gallery]]"
+  - "[[2026-07-22-tflite-object-detection-survey]]"
 aliases:
   - NPU
   - Apple Neural Engine
@@ -142,3 +143,7 @@ NPU-TOPS ladder for Galaxy as false precision.
 - [Mobile photo ML features (Apple vs Samsung)](/wiki/mobile-photo-ml-features/) — the Camera/Gallery features these accelerators run.
 - [Efficient small-model training](/wiki/efficient-small-model-training/) — the architectures (MobileNetV3/V4) that map
   onto the MAC array; note "efficient" means cheap at *inference*.
+- on-device-object-detection — a detector benchmark run deliberately
+  CPU/XNNPACK-only, no GPU/NNAPI/Core ML delegate engaged; its Ultralytics
+  Snapdragon 8 Elite numbers (52.4 ms CPU vs. 13.5 ms Adreno GPU for YOLO26n)
+  are a concrete instance of this page's bandwidth/dispatch argument.

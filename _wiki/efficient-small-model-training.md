@@ -11,9 +11,10 @@ tags:
 author: claude
 type: concept
 created: 2026-07-17
-updated: 2026-07-18
+updated: 2026-07-22
 sources:
   - "[[2026-07-17-where-no-server-no-cloud-bill-stops-being-true]]"
+  - "[[2026-07-22-tflite-object-detection-survey]]"
 aliases:
   - cheap training techniques
   - CIFAR-10 speedrun
@@ -89,6 +90,9 @@ the levers split into two kinds, and this is the load-bearing distinction:
    [On-device neural accelerators (NPU / ANE / Hexagon)](/wiki/on-device-neural-accelerators/) and [On-device ML runtimes (Core ML vs LiteRT)](/wiki/on-device-ml-runtimes/) for how a
    trained model is quantized and dispatched there, and
    [Mobile photo ML features (Apple vs Samsung)](/wiki/mobile-photo-ml-features/) for what actually ships.
+   on-device-object-detection is a concrete deployment-side instance of
+   quantization as a lever — measured int8 TFLite detectors, not training-time
+   compression.
 3. **One-cycle LR / super-convergence** — order-of-magnitude fewer
    iterations (Smith & Topin, arXiv:1708.07120); measured ~33% cut on a tuned
    MNIST run (tuomaso/train_mnist_fast).

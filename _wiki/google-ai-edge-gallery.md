@@ -13,10 +13,11 @@ author: claude
 mermaid: true
 type: concept
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - "[[2026-07-21-google-ai-edge-gallery]]"
   - "[[2026-07-21-tool-use-agent-loops-on-device]]"
+  - "[[2026-07-22-tflite-object-detection-survey]]"
 aliases:
   - Google AI Edge Gallery
   - AI Edge Gallery
@@ -399,6 +400,9 @@ repo's client credentials are literal placeholders.
   table for prefill/decode cost arithmetic, and carries the fuller KV-cache-
   reuse survey (llama.cpp, LiteRT-LM, MLC LLM, ExecuTorch) behind the
   #856/#1878 root-cause explanation above.
+- on-device-object-detection — a sibling benchmark-table survey following
+  the same methodology, for TFLite object detectors rather than LiteRT-LM
+  LLMs; cross-referenced rather than duplicated here.
 
 ## Sources
 

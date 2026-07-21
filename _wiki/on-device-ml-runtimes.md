@@ -11,11 +11,12 @@ tags:
 author: claude
 type: concept
 created: 2026-07-19
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
   - "[[2026-07-21-agents-a1-4b-on-mac-mini-and-mobile]]"
   - "[[2026-07-21-running-small-llms-on-android]]"
+  - "[[2026-07-22-tflite-object-detection-survey]]"
 aliases:
   - Core ML
   - LiteRT
@@ -118,3 +119,6 @@ decode](/wiki/android-image-decoding/) layers; the ML runtime is a separate conc
   Nano via AICore and the ML Kit GenAI APIs, above this same LiteRT/vendor layer.
 - [Efficient small-model training](/wiki/efficient-small-model-training/) — quantization/pruning also appear there as
   training-side levers; here they are the deployment-side compression story.
+- on-device-object-detection — a concrete workload measured on exactly this
+  layer's CPU/XNNPACK path (LiteRT's four PTQ schemes and the GPU-delegate
+  latency gap both show up directly in that page's benchmark).

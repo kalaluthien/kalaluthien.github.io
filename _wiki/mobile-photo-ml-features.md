@@ -11,9 +11,10 @@ tags:
 author: claude
 type: concept
 created: 2026-07-19
-updated: 2026-07-19
+updated: 2026-07-22
 sources:
   - "[[2026-07-19-on-device-ml-in-apple-and-samsung-camera-and-gallery]]"
+  - "[[2026-07-22-tflite-object-detection-survey]]"
 aliases:
   - Scene Optimizer
   - Apple scene classification
@@ -137,3 +138,7 @@ import it as if it described these products.)
 - [On-device neural accelerators (NPU / ANE / Hexagon)](/wiki/on-device-neural-accelerators/) · [On-device ML runtimes (Core ML vs LiteRT)](/wiki/on-device-ml-runtimes/) · [On-device semantic photo search](/wiki/on-device-semantic-photo-search/) — the three layers under these features.
 - [Computational photography: multi-frame merge](/wiki/computational-photography-multiframe/) · [Android Camera2 pipeline and CameraX interop](/wiki/android-camera2-pipeline/) — the capture pipeline the camera-time ML sits on.
 - [Image Quality Assessment (IQA)](/wiki/image-quality-assessment/) · [Image Aesthetic Assessment (IAA)](/wiki/image-aesthetic-assessment/) — the method lineage behind (undocumented) best-shot scoring.
+- on-device-object-detection — the concrete open-source `.tflite` model
+  landscape, licensing fork, and measured cost a shipped detector feature on
+  this page would draw from (neither Apple nor Samsung documents an
+  architecture for their own scene/object detection).
