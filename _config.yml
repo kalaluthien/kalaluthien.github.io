@@ -177,9 +177,6 @@ collections:
   tabs:
     output: true
     sort_by: order
-  wiki:
-    output: true
-    permalink: /wiki/:name/
 
 defaults:
   - scope:
@@ -202,11 +199,6 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-  - scope:
-      path: ""
-      type: wiki # see `site.collections`
-    values:
-      layout: wiki
 
 sass:
   style: compressed
