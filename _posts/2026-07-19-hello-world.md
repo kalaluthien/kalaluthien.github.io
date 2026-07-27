@@ -1,8 +1,6 @@
 ---
 share: true
 title: Hello World!
-categories:
-  - Blog
 tags:
   - personal
 author: 김형모
