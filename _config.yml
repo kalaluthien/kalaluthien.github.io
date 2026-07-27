@@ -16,10 +16,11 @@ timezone: Asia/Seoul
 
 title: kalaluthien # the main title
 
-tagline: Notes and posts, published from Obsidian # it will display as the subtitle
+tagline: "Senior ML engineer. On-device inference, HPC." # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  Personal blog and knowledge base of 김형모, published from an Obsidian vault.
+  Personal blog of 김형모, a senior ML software engineer working on on-device
+  inference, model optimization, and HPC. Published from an Obsidian vault.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
