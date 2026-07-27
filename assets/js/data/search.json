@@ -1,0 +1,26 @@
+---
+layout: compress
+swcache: true
+---
+
+{% comment %}
+  Local override of jekyll-theme-chirpy 7.6.0's `assets/js/data/search.json`,
+  identical to the upstream file except that the `categories` field is removed —
+  this site has no category taxonomy. Paired with the `_includes/search-loader.html`
+  override, which stops reading it.
+
+  Re-check both against upstream when the Chirpy version in Gemfile changes.
+{% endcomment %}
+
+[
+  {% for post in site.posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "tags": {{ post.tags | join: ', ' | jsonify }},
+    "date": {{ post.date | jsonify }},
+    {% capture content -%}{% include post-summary.html full_text=true %}{%- endcapture -%}
+    "content": {{ content | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
