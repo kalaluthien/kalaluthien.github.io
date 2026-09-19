@@ -1,5 +1,4 @@
 ---
-share: true
 title: Hello World!
 tags:
   - personal
