@@ -5,7 +5,7 @@ order: 6
 ---
 
 김형모 / [kalaluthien](https://github.com/kalaluthien). Senior ML software
-engineer at Hyperconnect, MatchGroup AI.
+engineer at Hyperconnect, Match Group AI.
 
 I am a polyglot programmer for any problem that can be framed, designed, and
 interpreted as a program: applications, platforms, models, processes,
@@ -13,19 +13,19 @@ strategies, and team topology. I mostly study immutable things such as abstract
 structures, first principles, and mental models, because they apply generically
 to practical topics.
 
-Posts here are written in an Obsidian vault and published by a sync script.
+Posts here are written in this repository and published by GitHub Pages.
 
 ## Experience
 
 ### Multi-task on-device model
 
-2025 - 2026 · Hyperconnect / MatchGroup AI · ML software engineer
+2025 - 2026 · Hyperconnect / Match Group AI · ML software engineer
 
 - Designed and proposed a multi-task vision on-device model, based on a
   literature survey, to replace the previous models in the iOS and Android
   model pipeline.
 - Proposed a modular model architecture, and led machine learning engineers in
-  different timezones to train the parts concurrently without blocking each
+  different time zones to train the parts concurrently without blocking each
   other.
 - Distilled pre-trained CLIP (ViT) models into a MobileNet variant for better
   generalizability and semantic search accuracy.
@@ -34,14 +34,14 @@ Posts here are written in an Obsidian vault and published by a sync script.
 
 ### On-device ML platform as a service
 
-2023 - 2025 · Hyperconnect / MatchGroup AI · acting manager
+2023 - 2025 · Hyperconnect / Match Group AI · acting manager
 
 - Designed and proposed a platform prototype for easy integration of mobile
   inference capabilities.
 - Developed the iOS demo application, and added multithreading to the Android
   demo application, for third-party PoC delivery.
 - Developed an integrated Python script for conversion, encryption, and
-  preprocessing insertion between TFLite, TorchScript, ONNX, and CoreML.
+  preprocessing insertion between TFLite, TorchScript, ONNX, and Core ML.
 - Developed a generalized benchmark application for testing in mobile
   environments.
 - Led software engineers and machine learning engineers on several server-side
@@ -66,8 +66,8 @@ Posts here are written in an Obsidian vault and published by a sync script.
   cost-effectively.
 - Proposed and built a system that serves at no additional cost on already
   purchased on-premise hardware, in two weeks.
-- Defined and broke down a complex problem into delegatable, deliverable
-  pieces.
+- Defined and broke down a complex problem into pieces that can be
+  delegated and delivered.
 - Saved hundreds of millions of won per month.
 
 ### Unstructured training data ETL pipeline
@@ -90,14 +90,14 @@ Posts here are written in an Obsidian vault and published by a sync script.
   model.
 - Advanced the Python tools for TFLite model conversion and metadata
   operations.
-- Reimplemented the inference engine code base for software quality.
+- Reimplemented the inference engine codebase for software quality.
 
 ### CUDA-based LLM inference runtime
 
 2021 · Hyperconnect · ML software engineer
 
 - Implemented additional CUDA kernels for NVIDIA FasterTransformer, fixed bugs,
-  optimized GPU memory, and implemented heuristics. Correct behaviour was
+  optimized GPU memory, and implemented heuristics. Correct behavior was
   checked up to 13B.
 - Ran the actual service as a backend on NVIDIA Triton inference servers, at 4B
   scale.
@@ -108,12 +108,12 @@ Posts here are written in an Obsidian vault and published by a sync script.
 2020 - 2024 · Hyperconnect · ML software engineer
 
 - Reviewed the system design and the technical specification of a 50 PF GPU
-  cluster based on the NVIDIA SuperPod architecture.
+  cluster based on the NVIDIA SuperPOD architecture.
 - Achieved more than twice the cost efficiency of AWS cloud.
 - Configured 400 TB distributed storage and designed a GitOps-based management
   system.
 - Constructed a deep learning research environment for large-scale distributed
-  training through the slurm scheduler, with Ansible and systemd.
+  training through the Slurm scheduler, with Ansible and systemd.
 
 ### Real-time on-device image classification engine
 
@@ -123,7 +123,7 @@ Posts here are written in an Obsidian vault and published by a sync script.
   devices, a new lightweight model with faster inference time than the existing
   image classification and segmentation models.
 - Ran a PoC on TensorFlow 2 Keras quantization.
-- Applied the TFLite GPU and XNNPack delegates for hardware acceleration.
+- Applied the TFLite GPU and XNNPACK delegates for hardware acceleration.
 - Developed Android and iOS demo apps for testing in a WebRTC environment.
 
 ### Chundoong supercomputer
